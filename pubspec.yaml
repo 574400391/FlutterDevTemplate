@@ -1,0 +1,82 @@
+name: flutter_dev_template
+description: Flutter app开发模板
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.3 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # 状态管理
+  provider: ^6.0.5
+  # 网络请求
+  dio: ^5.0.1
+  # sp临时文件
+  shared_preferences: ^2.0.18
+  sp_util: ^2.0.3
+  # toast
+  oktoast: ^3.3.1
+  # 页面上拉加载下拉刷新
+  easy_refresh: ^3.3.1
+  # sqlite数据库
+  sqflite: ^2.2.5
+  # 同步
+  synchronized: ^3.0.1
+  # 加解密
+  crypto: ^3.0.2
+  encrypt: ^5.0.1
+  # 获取文件目录
+  path_provider: ^2.0.13
+  # 生成Flutter与Native层通讯文件
+  pigeon: ^9.0.5
+  # 二维码扫描
+  qr_code_scanner: ^1.0.1
+  # 二维码生成
+  qr_flutter: ^4.0.0
+  # xml文件拼装解析
+  xml: ^6.2.2
+  # 加载url
+  url_launcher: ^6.1.10
+  # apple风格icon
+  cupertino_icons: ^1.0.5
+  # 日期选择器
+  flutter_datetime_picker: ^1.5.1
+  # 日期格式化
+  date_format: ^2.0.4
+  # 查询PackageInfo
+  package_info_plus: ^3.0.3
+  # 高精度计算
+  decimal: ^2.3.2
+  # app权限管理
+  permission_handler: ^10.2.0
+  # webview
+  flutter_inappwebview: ^5.7.2+3
+  # 图片选择
+  image_picker: ^0.8.6+4
+  # 系统相机
+  camera: ^0.10.3+2
+  # 获取当前设备信息
+  device_info_plus: ^8.1.0
+  # 常用工具类
+  common_utils: ^2.1.0
+  # UI组件库
+  bruno: ^3.3.0
+  # loading ui
+  flutter_spinkit: ^5.1.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
