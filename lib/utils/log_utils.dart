@@ -13,12 +13,12 @@ class Log {
   static final Lock _lock = Lock();
 
   static void init() {
-    LogUtil.init(isDebug: Constant.showLog, maxLen: 512);
+    LogUtil.init(isDebug: !Constant.showLog, maxLen: 512);
   }
 
   static void d(Object? msg, {String tag = tag, bool saveLog = false}) {
     if (!Constant.showLog) {
-      LogUtil.v(msg, tag:'【$tag】');
+      LogUtil.d(msg, tag:'【$tag】');
       if (saveLog) {
         Log.saveLog(msg.toString(), tag: tag);
       }

@@ -25,7 +25,6 @@ class MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-
     /// 注册事件监听
     Utils.eventBusOn(EventBusNameEnum.LOGIN_EVENT, (_) async {
       Log.d("login success", tag: _tag);

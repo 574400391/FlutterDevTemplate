@@ -23,17 +23,19 @@ void main() {
   // 设置Android透明状态栏，默认半透明
   if (Device.isAndroid) {
     const SystemUiOverlayStyle systemUiOverlayStyle =
-    SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
-  runApp(
-      MultiProvider(providers: [
-        /// 全局provider示例
-        /// 尽量控制provider在最小的widget节点范围内使用
-        ChangeNotifierProvider<GlobalProvider>(
-          create: (_) => GlobalProvider(),
-        ),
-      ], child: MyApp(),));
+  runApp(MultiProvider(
+    providers: [
+      /// 全局provider示例
+      /// 尽量控制provider在最小的widget节点范围内使用
+      ChangeNotifierProvider<GlobalProvider>(
+        create: (_) => GlobalProvider(),
+      ),
+    ],
+    child: MyApp(),
+  ));
 }
 
 // 全局的路由监听者，可在需要的widget中添加，应该放到一个全局定义的文件中 此配置是为了pop对话框消失的问题
@@ -42,13 +44,24 @@ final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key) {
     Log.init();
+    _initAppConfig();
     _initAppVersion();
+  }
+
+  /// 初始化编译时配置文件
+  _initAppConfig() {
+    Constant.currentBuildName = const String.fromEnvironment('channel');
+    Constant.exampleApiBaseUrl = const String.fromEnvironment('exampleApiUrl');
+    Log.d(
+        'currentBuildName: ${Constant.currentBuildName}, exampleApiBaseUrl: ${Constant.exampleApiBaseUrl}',
+        tag: '_initAppConfig',
+        saveLog: true);
   }
 
   /// 初始化应用版本描述信息
   _initAppVersion() async {
     String platform =
-    Device.isAndroid ? 'Android' : (Device.isIOS ? 'iOS' : 'Other');
+        Device.isAndroid ? 'Android' : (Device.isIOS ? 'iOS' : 'Other');
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String appVersion = packageInfo.version;
     String buildType = kReleaseMode
@@ -103,9 +116,9 @@ class MyApp extends StatelessWidget {
 ///       在指定时间内只接收用户最后一次编辑的输入内容，
 ///       避免因输入速度过快导致多次无效的查询请求
 Function() debounce(
-    Function func, {
-      Duration delay = const Duration(milliseconds: 500),
-    }) {
+  Function func, {
+  Duration delay = const Duration(milliseconds: 500),
+}) {
   Timer? timer;
   target() {
     if (timer?.isActive ?? false) {
@@ -115,6 +128,7 @@ Function() debounce(
       func.call();
     });
   }
+
   return target;
 }
 
@@ -124,8 +138,8 @@ Function() debounce(
 ///   1. 按钮点击时触发业务流程操作，避免多次点击导致多次执行相同的业务流程导致bug
 ///   2. 下拉刷新、上拉加载
 Function? throttle(
-    Future Function()? func,
-    ) {
+  Future Function()? func,
+) {
   if (func == null) {
     return func;
   }
@@ -138,5 +152,6 @@ Function? throttle(
       });
     }
   }
+
   return target;
 }

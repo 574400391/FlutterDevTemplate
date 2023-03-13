@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_dev_template/config/constant.dart';
 import 'package:flutter_dev_template/utils/log_utils.dart';
 
 /// Api示例
@@ -19,10 +20,10 @@ class ExampleApi {
 
   static ExampleApi getInstance() => _instance;
 
-  // TODO baseUrl需替换
-  static const String baseUrl = "http://ip:port/";
+  static String baseUrl = Constant.exampleApiBaseUrl;
 
   ExampleApi._internal() {
+    Log.d('_internal baseUrl: $baseUrl', tag: _tag);
     if (null == _dio) {
       BaseOptions baseOptions = BaseOptions(
           baseUrl: baseUrl,

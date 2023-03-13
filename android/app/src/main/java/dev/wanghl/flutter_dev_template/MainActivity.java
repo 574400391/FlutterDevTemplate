@@ -29,6 +29,26 @@ public class MainActivity extends FlutterActivity {
         public void doSomethingNoParam() {
             // Flutter层调用doSomethingNoParam()，在这里可以同步或异步进行一些任务处理
             LogUtil.i(TAG, "doSomethingNoParam()");
+            mCachedThreadPool.execute(() -> new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // 模拟耗时任务，等待3s后由Native层将任务处理结果返回给Flutter层
+                        Thread.sleep(3000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Pigeon.Message msgResult = new Pigeon.Message();
+                                msgResult.setType(1L);
+                                msgResult.setMessage("Android端处理成功");
+                                nativeApi.doSomethingResult(msgResult, reply -> {});
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start());
         }
 
         @Override
@@ -48,7 +68,7 @@ public class MainActivity extends FlutterActivity {
                             @Override
                             public void run() {
                                 Pigeon.Message msgResult = new Pigeon.Message();
-                                msgResult.setType(0L);
+                                msgResult.setType(2L);
                                 msgResult.setMessage("Android端处理成功");
                                 nativeApi.doSomethingResult(msgResult, reply -> {});
                             }

@@ -74,28 +74,9 @@ class Utils {
     return regExpStr.hasMatch(input);
   }
 
-  // 校验字符串是否是合法的手机号
-  static bool checkSjhm(String input) {
-    RegExp regExpStr = RegExp(
-        r'^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$');
-    return regExpStr.hasMatch(input);
-  }
-
   // 校验字符串是否是合法的身份证号
   static bool checkID(String input) {
     RegExp regExpStr = RegExp(r'(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)');
-    return regExpStr.hasMatch(input);
-  }
-
-  // 校验证书密码
-  static bool checkPwd(String input) {
-    RegExp regExpStr = RegExp(r'^.{6,20}$');
-    return regExpStr.hasMatch(input);
-  }
-
-  // 校验手机号登录密码
-  static bool checkPhonePwd(String input) {
-    RegExp regExpStr = RegExp(r'^.{8,20}$');
     return regExpStr.hasMatch(input);
   }
 
@@ -117,17 +98,6 @@ class Utils {
     return length;
   }
 
-  /// 是否含有特殊字符
-  static bool tszf(String input) {
-    RegExp chineseByteReg = RegExp(r'[￥§＄￡￠€℃℅℉№℡?∏※∮‰]');
-    for (int i = 0; i < input.length; i++) {
-      if (chineseByteReg.hasMatch(input.characters.characterAt(i).string)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   static bool isEmpty(String? input) {
     return input == null || input.isEmpty || input.trim().isEmpty;
   }
@@ -135,7 +105,6 @@ class Utils {
   static bool isNotEmpty(String? input) {
     return input != null && input.isNotEmpty;
   }
-
 
   /// EventBus 监听事件 执行某方法
   ///   注：事件监听方法，只需调用一次，严禁放到onTap或者onPressed中多次触发
@@ -221,11 +190,6 @@ class Utils {
         len, (_) => chars.codeUnitAt(random.nextInt(chars.length))));
   }
 
-
-  static String twoDigits(int n) {
-    if (n >= 10) return "$n";
-    return "0$n";
-  }
 
   static String formatYyyymmdd(String kprq) {
     return kprq.length < 8

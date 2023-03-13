@@ -8,28 +8,30 @@ flutter快速开发模板，用于跨端开发Android/iOS app。
 - Dart: 2.19.3
 - Android
   - minSdkVersion: 21
-  - currentSdkVersion:
-  - Android Studio 4.2.1
+  - targetSdkVersion: 33
+  - compileSdkVersion: 33
+  - Android Studio Electric Eel | 2022.1.1 Patch 2
 - iOS
   - support iOS version: 11+
 
 ## 目录结构
 
-> - |--assets(资源目录)
->   - |-- imgs (存放图片资源)
->   - |-- json (存放接口通讯 json 文件,可以通过 json_serializable 解析 json 模板)
-> - |--lib
->   - |-- api (网络接口封装)
->   - |-- common (常用类，例如常量 Constant)
->   - |-- config (业务参数设置,不建议修改)
->   - |-- model (实体类)
->   - |-- provider (数据库)
->   - |-- ui (界面相关 page，dialog，widgets)
->     - |-- pages (界面)
->     - |-- res (公共资源文件，string，colors，dimens，styles)
->     - |-- widgets (自定义组件)
->   - |-- utils (工具类)
->   - |-- main.dart (程序入口)
+- |--assets(资源目录)
+  - |-- imgs (存放图片资源)
+  - |-- json (存放接口通讯 json 文件,可以通过 json_serializable 解析 json 模板)
+- |--config(编译时使用的配置文件目录)
+- |--lib
+  - |-- api (网络接口封装)
+  - |-- common (常用类，例如常量 Constant)
+  - |-- config (业务参数设置,不建议修改)
+  - |-- model (实体类)
+  - |-- provider (数据库)
+  - |-- ui (界面相关 page，dialog，widgets)
+    - |-- pages (界面)
+    - |-- res (公共资源文件，string，colors，dimens，styles)
+    - |-- widgets (自定义组件)
+  - |-- utils (工具类)
+  - |-- main.dart (程序入口)
 
 ## 技术栈选型
 
@@ -55,13 +57,29 @@ flutter快速开发模板，用于跨端开发Android/iOS app。
 
 ### 状态管理
 
+状态管理使用provider库。
+
+需控制provider在最小的widget节点范围内使用，注意区分哪些数据需要放到全局，哪些数据挂载到某个页面节点即可。
+
 ### 网络通讯
+
+网络通讯使用dio库。
 
 ### SQLite数据库
 
+使用sqflite库操作数据库。
+
+需注意涉及表结构变动时，在openDatabase()中重写onUpgrade逻辑，自行判断旧数据库版本号，低于指定版本时执行更新脚本。
+
+增删查操作参考/lib/ui/page/demo/db_demo/db_demo_page.dart
+
 ### SP缓存文件
 
+参考/lib/common/sp_manager.dart
+
 ### 路由管理
+
+自行设置routerName并完成Route映射，参考/lib/common/router_manager.dart
 
 ### 消息订阅
 
@@ -91,14 +109,30 @@ flutter pub run --no-sound-null-safety pigeon --input pigeons/message.dart  --da
 
 ### 权限管理
 
-### 国际化
-
 ### Mock数据
 
 ### 日志管理
 
+通过Log工具类进行日志打印，方便开发阶段排查问题。如需存储到文件，调用Log工具类打印日志时设置saveLog: true即可。
+
 #### 日志加解密
+
+参考**/lib/ui/page/demo/file_demo/file_demo.dart**
 
 ### 页面主题
 
-### XML拼装解析
+### 编译时动态添加配置
+
+从Flutter3.7版本开始，我们可以使用**--dart-define-from-file**参数指定编译时的配置文件：
+
+```
+flutter run --dart-define-from-file=config/dev.json
+```
+
+我们可以将开发、测试、生产环境不同的配置项或各种渠道标识添加到配置文件中，运行时动态指定配置文件路径，程序运行时通过Environment获取：
+
+```
+Constant.currentBuildName = const String.fromEnvironment('channel');
+```
+
+原生程序同样支持获取当前配置，参考：[Flutter 小技巧之 3.7 更灵活的编译变量支持--恋猫de小郭](https://juejin.cn/post/7197936331926175804)

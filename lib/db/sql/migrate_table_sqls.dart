@@ -11,20 +11,10 @@ import 'package:sqflite/sqflite.dart';
 ///   5. 临时表数据写入新表
 ///   6. 删除临时表
 class MigrateTableSqls {
-  static String addColumnExample =
-      "alter table person add column city Text default 'beijing'";
-
-  /// 创建person表语句
-  static const String createTableSqPerson = '''
-    CREATE TABLE IF NOT EXISTS person (
-    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, 
-    name TEXT,
-    age INTEGER);
-    ''';
 
   static void migrateTableExample(Batch batch) {
-    String tempTableName = "local_invoice_temp";
-    String tableName = "local_invoice";
+    String tempTableName = "person_temp";
+    String tableName = "person";
     // oldVersion table person create sql:
     // '''
     //  CREATE TABLE IF NOT EXISTS person (
@@ -36,24 +26,9 @@ class MigrateTableSqls {
     batch.execute('''
     CREATE TABLE IF NOT EXISTS $tempTableName (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, 
-    fpdm TEXT,
-    fphm TEXT,
-    fplxdm TEXT,
-    yfpdm TEXT,
-    yfphm TEXT,
-    xsfsbh TEXT,
-    xsfmc TEXT,
-    gmfmc TEXT,
-    sbbh TEXT,
-    je TEXT,
-    se TEXT,
-    jshj TEXT,
-    fpztbz TEXT,
-    tqm TEXT,
-    kprq TEXT,
-    fpkjzt TEXT,
-    gmfEmail TEXT,
-    previewUrl TEXT);
+    name TEXT,
+    age INTEGER,
+    address TEXT);
     ''');
     // 2. 旧表数据导入新表
     batch.execute('''
@@ -67,34 +42,18 @@ class MigrateTableSqls {
     batch.execute('''
     CREATE TABLE IF NOT EXISTS $tableName (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, 
-    fpdm TEXT,
-    fphm TEXT,
-    fplxdm TEXT,
-    yfpdm TEXT,
-    yfphm TEXT,
-    xsfsbh TEXT,
-    xsfmc TEXT,
-    gmfmc TEXT,
-    sbbh TEXT,
-    je TEXT,
-    se TEXT,
-    jshj TEXT,
-    fpztbz TEXT,
-    tqm TEXT,
-    kprq TEXT,
-    fpkjzt TEXT,
-    gmfEmail TEXT,
-    previewUrl TEXT,
-    tag Text);
+    name TEXT,
+    age INTEGER,
+    address TEXT);
     ''');
     // 5. 临时表数据写入新表
     batch.execute('''
-    INSERT INTO $tableName(id,fpdm,fphm,fplxdm,yfpdm,yfphm,xsfsbh,xsfmc,gmfmc,sbbh,je,se,jshj,fpztbz,tqm,kprq,fpkjzt,gmfEmail,previewUrl) SELECT * FROM $tempTableName;
+    INSERT INTO $tableName(id, name, age, address) SELECT * FROM $tempTableName;
     ''');
     // 6. 删除临时表
     batch.execute('''
     DROP TABLE $tempTableName
     ''');
-     batch.commit();
+    batch.commit();
   }
 }

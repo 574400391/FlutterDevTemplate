@@ -5,7 +5,6 @@ class Message {
   String? message; // 消息内容
 }
 
-
 /// Flutter -> Native(Android/iOS)
 @HostApi()
 abstract class Api {
