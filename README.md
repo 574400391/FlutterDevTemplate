@@ -109,7 +109,11 @@ flutter pub run --no-sound-null-safety pigeon --input pigeons/message.dart  --da
 
 ### 权限管理
 
+TODO
+
 ### Mock数据
+
+TODO
 
 ### 日志管理
 
@@ -120,6 +124,8 @@ flutter pub run --no-sound-null-safety pigeon --input pigeons/message.dart  --da
 参考**/lib/ui/page/demo/file_demo/file_demo.dart**
 
 ### 页面主题
+
+TODO
 
 ### 编译时动态添加配置
 

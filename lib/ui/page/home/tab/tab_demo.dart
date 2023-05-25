@@ -3,6 +3,7 @@ import 'package:flutter_dev_template/config/constant.dart';
 import 'package:flutter_dev_template/pigeon.dart';
 import 'package:flutter_dev_template/ui/page/demo/db_demo/db_demo_page.dart';
 import 'package:flutter_dev_template/ui/page/demo/file_demo/file_demo.dart';
+import 'package:flutter_dev_template/ui/page/demo/webview_demo/webview_demo.dart';
 import 'package:flutter_dev_template/ui/widget/common_menu_row.dart';
 import 'package:flutter_dev_template/utils/my_native_api.dart';
 import 'package:flutter_dev_template/utils/show_msg_mixin.dart';
@@ -69,6 +70,14 @@ class TabDemoPageState extends State<TabDemoPage> with ShowMsgMixin {
               const CommonMenuRow(
                 title: '文件存储示例',
                 page: FileDemo(),
+              ),
+              // const CommonMenuRow(
+              //   title: 'WebView示例--加载本地静态资源',
+              //   page: WebViewDemoPage('assets/www2/index.html', true),
+              // ),
+              const CommonMenuRow(
+                title: 'WebView示例--加载h5在线资源',
+                page: WebViewDemoPage('http://192.168.31.9:5173/', false),
               ),
             ],
           ),

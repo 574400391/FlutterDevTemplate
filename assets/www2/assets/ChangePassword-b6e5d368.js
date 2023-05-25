@@ -1,0 +1,1 @@
+import{_ as e}from"./NavBar.vue_vue_type_script_setup_true_lang-ec43c9a4.js";import{d as a,v as o,b as t,H as r,D as s}from"./index-2f00049f.js";import"./index-7b17285f.js";import"./Icon-293a71c6.js";const f=a({__name:"ChangePassword",setup(n){return(c,m)=>(s(),o("div",null,[t(e),r(" 修改登录密码页面 ")]))}});export{f as default};

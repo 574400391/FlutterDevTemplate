@@ -1,0 +1,1 @@
+import{_ as a}from"./tab-bar-7f8557c6.js";import{a as o,b as c,c as s,g as r,d as e,F as l}from"./index-84de147d.js";const _=e("div",null,"mine",-1),u=e("br",null,null,-1),k={__name:"index",setup(i){const t=o(),n=()=>{t.back()};return(m,d)=>(c(),s(l,null,[_,r(a,{currentSelectPage:"mine"}),u,e("button",{onClick:n},"返回上一页")],64))}};export{k as default};

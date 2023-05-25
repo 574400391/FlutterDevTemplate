@@ -41,14 +41,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.10.0"
-  bindings_compatible:
-    dependency: transitive
-    description:
-      name: bindings_compatible
-      sha256: "5dd5189f7512aff8ec180a8a11bd59230aa34a2d743e65e427192b7292a78d87"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -57,14 +49,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.1"
-  bruno:
-    dependency: "direct main"
-    description:
-      name: bruno
-      sha256: "18866ef04d470876dc2434eb44c2ec3c2213ef354f734f8f99cfabee93fd4027"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.3.0"
   camera:
     dependency: "direct main"
     description:
@@ -262,22 +246,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.5.1"
-  flutter_easyrefresh:
-    dependency: transitive
-    description:
-      name: flutter_easyrefresh
-      sha256: "5d161ee5dcac34da9065116568147d742dd25fb9bff3b10024d9054b195087ad"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.2.2"
-  flutter_inappwebview:
-    dependency: "direct main"
-    description:
-      name: flutter_inappwebview
-      sha256: f73505c792cf083d5566e1a94002311be497d984b5607f25be36d685cf6361cf
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "5.7.2+3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -405,14 +373,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.1"
-  lpinyin:
-    dependency: transitive
-    description:
-      name: lpinyin
-      sha256: "0bb843363f1f65170efd09fbdfc760c7ec34fc6354f9fcb2f89e74866a0d814a"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.3"
   matcher:
     dependency: transitive
     description:
@@ -597,14 +557,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "5.1.0"
-  photo_view:
-    dependency: transitive
-    description:
-      name: photo_view
-      sha256: "8036802a00bae2a78fc197af8a158e3e2f7b500561ed23b4c458107685e645bb"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.14.0"
   pigeon:
     dependency: "direct main"
     description:
@@ -938,6 +890,38 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.2"
+  webview_flutter:
+    dependency: "direct main"
+    description:
+      name: webview_flutter
+      sha256: "5604dac1178680a34fbe4a08c7b69ec42cca6601dc300009ec9ff69bef284cc2"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.2.1"
+  webview_flutter_android:
+    dependency: transitive
+    description:
+      name: webview_flutter_android
+      sha256: c849dcb6bf7367f696869006fb9575c15bdc6a1d624ae13f12de5a147a740b12
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.4.2"
+  webview_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: webview_flutter_platform_interface
+      sha256: "656e2aeaef318900fffd21468b6ddc7958c7092a642f0e7220bac328b70d4a81"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.3.1"
+  webview_flutter_wkwebview:
+    dependency: transitive
+    description:
+      name: webview_flutter_wkwebview
+      sha256: ab12479f7a0cf112b9420c36aaf206a1ca47cd60cd42de74a4be2e97a697587b
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.2.1"
   win32:
     dependency: transitive
     description:
@@ -972,4 +956,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.19.3 <3.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.3.0"
